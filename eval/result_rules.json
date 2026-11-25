@@ -1,0 +1,647 @@
+{
+ "mode": "rules",
+ "correct": 53,
+ "total": 71,
+ "fallbacks": 0,
+ "cases": [
+  {
+   "cat": "oddiy",
+   "q": "2023 yilda yalpi ichki mahsulot hajmi qancha edi?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 201,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2024 yilda ishsizlik darajasi qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 102,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2022 yilda doimiy aholi soni qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 145,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2023 yilda tug'ilganlar soni qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 91,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2024 yilda nikohdan ajralishlar soni qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 133,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2024 yilda eksport hajmi qancha bo'lgan?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 89,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2023 yilda import hajmi qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 82,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2022 yilda qishloq xo'jaligi mahsulotlari umumiy hajmi qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 163,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "2024 yilda YaIM necha foiz o'sdi?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 303,
+   "interpreted_as": null
+  },
+  {
+   "cat": "oddiy",
+   "q": "yaim 2022",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 116,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Samarqand viloyati 2024 yil yalpi hududiy mahsulot qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 114,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Buxoro viloyatida 2023 yilda ishsizlik darajasi qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 79,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Xorazm viloyati aholi soni 2024",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 74,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Farg'ona viloyatida 2022 yilda tug'ilganlar soni qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 76,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Navoiy viloyati 2023 yil eksport hajmi qancha?",
+   "ok": false,
+   "why": "wrong indicator 2762: Eksport tovarlar hajmi (yillik)",
+   "engine": "rules",
+   "ms": 75,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Qashqadaryo viloyatida 2024 yilda import hajmi qancha?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 73,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Andijon viloyati 2023 yil qishloq xo'jaligi mahsulotlari hajmi",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 149,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Toshkent shahri 2024 yil yalpi hududiy mahsulot",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 111,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Surxondaryo viloyati ishsizlik darajasi 2022",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 81,
+   "interpreted_as": null
+  },
+  {
+   "cat": "hudud",
+   "q": "Namangan viloyatida nikohdan ajralishlar soni 2023",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 108,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "samarqandda ishsizlik qancha 2024 yil",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 83,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "buxoroda aholi soni necha kishi 2023",
+   "ok": false,
+   "why": "status=no_data",
+   "engine": "rules",
+   "ms": 110,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "yalpi ichki mahsulot 2023 yil hajmi qnaca",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 185,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "ishsizlik darjasi Xorazmda 2022",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 119,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "2024 da eksport qancha bo'ldi O'zbekistonda",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 42,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "nechta bola tug'ilgan 2023 yilda",
+   "ok": false,
+   "why": "wrong indicator 225: Tug‘ilganlar soni (o‘g‘il bolalar)",
+   "engine": "rules",
+   "ms": 87,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "Andijonda 2024 yil necha kishi yashaydi",
+   "ok": false,
+   "why": "status=no_data",
+   "engine": "rules",
+   "ms": 91,
+   "interpreted_as": null
+  },
+  {
+   "cat": "erkin/imlo",
+   "q": "qancha odam ishsiz Jizzaxda 2023",
+   "ok": false,
+   "why": "wrong indicator 1313: Ishsizlar soni",
+   "engine": "rules",
+   "ms": 80,
+   "interpreted_as": null
+  },
+  {
+   "cat": "kirill",
+   "q": "Ўзбекистонда 2023 йилда ялпи ички маҳсулот ҳажми қанча?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 149,
+   "interpreted_as": null
+  },
+  {
+   "cat": "kirill",
+   "q": "Самарқанд вилояти 2024 йил ишсизлик даражаси",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 74,
+   "interpreted_as": null
+  },
+  {
+   "cat": "kirill",
+   "q": "Бухоро вилояти доимий аҳоли сони 2023",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 113,
+   "interpreted_as": null
+  },
+  {
+   "cat": "kirill",
+   "q": "2024 йилда экспорт ҳажми",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 72,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rus",
+   "q": "Какой был ВВП Узбекистана в 2023 году?",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 212,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rus",
+   "q": "Уровень безработицы в Самаркандской области в 2024 году",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 260,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rus",
+   "q": "Численность населения Бухарской области в 2023 году",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 226,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rus",
+   "q": "Объем экспорта Узбекистана в 2024 году",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 179,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rus",
+   "q": "Сколько детей родилось в Узбекистане в 2023 году?",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 258,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rus",
+   "q": "Сколько разводов было в Узбекистане в 2024 году?",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 263,
+   "interpreted_as": null
+  },
+  {
+   "cat": "ingliz",
+   "q": "What was Uzbekistan's GDP in 2023?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 183,
+   "interpreted_as": null
+  },
+  {
+   "cat": "ingliz",
+   "q": "Unemployment rate in Samarkand region in 2024",
+   "ok": false,
+   "why": "expected 5.4 for Samarqand viloyati 2024, got [('O‘zbekiston Respublikasi', '2024', 5.5)]",
+   "engine": "rules",
+   "ms": 156,
+   "interpreted_as": null
+  },
+  {
+   "cat": "ingliz",
+   "q": "How many people lived in Bukhara region in 2023?",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 153,
+   "interpreted_as": null
+  },
+  {
+   "cat": "ingliz",
+   "q": "Uzbekistan exports in 2024",
+   "ok": false,
+   "why": "wrong indicator 1133: Boshqa davlatlar bilan eksportning o‘sish sur’ati (yillik)",
+   "engine": "rules",
+   "ms": 74,
+   "interpreted_as": null
+  },
+  {
+   "cat": "ingliz",
+   "q": "number of births in Uzbekistan in 2023",
+   "ok": false,
+   "why": "wrong indicator 1044: O‘zbekiston Respublikasiga o‘qish maqsadida tashrif buyurgan chet el fuqarolari soni",
+   "engine": "rules",
+   "ms": 125,
+   "interpreted_as": null
+  },
+  {
+   "cat": "ingliz",
+   "q": "GDP growth rate of Uzbekistan in 2024",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 217,
+   "interpreted_as": null
+  },
+  {
+   "cat": "taqqoslash",
+   "q": "Samarqand va Buxoroning 2024 yil yalpi hududiy mahsulotini solishtir",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 114,
+   "interpreted_as": null
+  },
+  {
+   "cat": "taqqoslash",
+   "q": "2023 yilda Andijon va Namangan viloyatlarida ishsizlik darajasini taqqosla",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 148,
+   "interpreted_as": null
+  },
+  {
+   "cat": "taqqoslash",
+   "q": "Compare population of Samarkand and Bukhara in 2024",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 155,
+   "interpreted_as": null
+  },
+  {
+   "cat": "taqqoslash",
+   "q": "Сравни уровень безработицы в Самаркандской и Бухарской области в 2023",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 331,
+   "interpreted_as": null
+  },
+  {
+   "cat": "dinamika",
+   "q": "2020 dan 2024 gacha eksport hajmi qancha o'zgargan?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 75,
+   "interpreted_as": null
+  },
+  {
+   "cat": "dinamika",
+   "q": "doimiy aholi soni 2015 va 2025 yillarda qanday o'zgargan?",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 114,
+   "interpreted_as": null
+  },
+  {
+   "cat": "noaniq",
+   "q": "Buxoro haqida ma'lumot ber",
+   "ok": true,
+   "why": "status=ok",
+   "engine": "rules",
+   "ms": 836,
+   "interpreted_as": null
+  },
+  {
+   "cat": "noaniq",
+   "q": "qandaydir samarqandga aloqador statistika chiqarchi",
+   "ok": true,
+   "why": "status=ok",
+   "engine": "rules",
+   "ms": 825,
+   "interpreted_as": null
+  },
+  {
+   "cat": "noaniq",
+   "q": "Toshkent aholi soni qancha 2023",
+   "ok": true,
+   "why": "status=ambiguous",
+   "engine": "rules",
+   "ms": 0,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "2031 yilda ishsizlik qancha bo'ladi?",
+   "ok": true,
+   "why": "status=no_data",
+   "engine": "rules",
+   "ms": 78,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "2030 yilda YaIM qancha bo'ladi?",
+   "ok": true,
+   "why": "status=no_data",
+   "engine": "rules",
+   "ms": 114,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "Samarqand viloyatida 1950 yilda aholi soni qancha edi?",
+   "ok": true,
+   "why": "status=no_data",
+   "engine": "rules",
+   "ms": 74,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "bitcoin narxi qancha?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 74,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "Bugun ob-havo qanday?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 110,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "Prezident kim?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 71,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "What will unemployment be in 2035?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 106,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "Какой будет ВВП в 2040 году?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 177,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "2027 yilda aholi soni qancha bo'ladi?",
+   "ok": true,
+   "why": "status=no_data",
+   "engine": "rules",
+   "ms": 73,
+   "interpreted_as": null
+  },
+  {
+   "cat": "rad",
+   "q": "Eng yaxshi restoran qayerda?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 113,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "O'zbekiston poytaxti qayer?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 38,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Who won the 2022 World Cup?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 140,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Как дела?",
+   "ok": true,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 71,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Toshkent ishsizlik darajasi 2024",
+   "ok": true,
+   "why": "status=ambiguous",
+   "engine": "rules",
+   "ms": 0,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Ташкент 2024 безработица",
+   "ok": false,
+   "why": "status=no_match",
+   "engine": "rules",
+   "ms": 78,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Qoraqalpog'iston aholi soni 2024",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 74,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Jizzax 2023 yalpi hududiy mahsulot",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 117,
+   "interpreted_as": null
+  },
+  {
+   "cat": "yangi",
+   "q": "Surxondaryo viloyatida tug'ilganlar soni 2024",
+   "ok": true,
+   "why": "ok",
+   "engine": "rules",
+   "ms": 73,
+   "interpreted_as": null
+  }
+ ]
+}

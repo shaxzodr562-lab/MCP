@@ -1,0 +1,15 @@
+id,is_cumulative,reason
+4750,0,stock: headcount of poultry (bosh soni)
+4749,0,stock: headcount of sheep and goats
+4748,0,stock: headcount of cows
+4747,0,stock: headcount of cattle
+4717,0,stock: jobs at end of reporting period (hisobot davri oxiriga)
+4716,0,stock: workers with labour books at end of reporting period
+2109,0,stock: number of operating family enterprises
+2962,0,level: average wage
+3418,1,flow: gross value added (current prices); same family as GDP 1582 (reset 1.0)
+3419,1,flow: gross value added (current prices); same family as GDP 1582
+3420,1,flow: gross value added (current prices); same family as GDP 1582
+3422,1,flow: gross value added (current prices); same family as GDP 1582
+3423,1,flow: gross value added (current prices); same family as GDP 1582
+3424,1,flow: gross value added (current prices); same family as GDP 1582
