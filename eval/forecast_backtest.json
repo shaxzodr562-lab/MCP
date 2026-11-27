@@ -1,0 +1,29 @@
+{
+ "year": {
+  "series_tried": 600,
+  "refused": 228,
+  "forecast_points": 744,
+  "median_error_pct": 5.3,
+  "median_error_naive_pct": 5.5,
+  "within_10pct": 69.4,
+  "interval_coverage_pct": 71.1
+ },
+ "quarter": {
+  "series_tried": 214,
+  "refused": 76,
+  "forecast_points": 552,
+  "median_error_pct": 4.0,
+  "median_error_naive_pct": 7.4,
+  "within_10pct": 76.8,
+  "interval_coverage_pct": 79.7
+ },
+ "month": {
+  "series_tried": 254,
+  "refused": 98,
+  "forecast_points": 936,
+  "median_error_pct": 4.4,
+  "median_error_naive_pct": 10.4,
+  "within_10pct": 78.7,
+  "interval_coverage_pct": 82.1
+ }
+}

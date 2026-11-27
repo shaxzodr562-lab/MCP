@@ -99,7 +99,13 @@ CASES = [
     ("rad", "Prezident kim?", {"refuse": True}),
     ("rad", "What will unemployment be in 2035?", {"refuse": True}),
     ("rad", "Какой будет ВВП в 2040 году?", {"refuse": True}),
-    ("rad", "2027 yilda aholi soni qancha bo'ladi?", {"refuse": True}),
+    # forecasts: the right indicator, region and period must be estimated and labelled as such
+    ("prognoz", "2027 yilda aholi soni qancha bo'ladi?", {"forecast": "2027", "ids": POP, "member": UZ}),
+    ("prognoz", "Samarqand viloyatida 2028 yilda aholi soni", {"forecast": "2028", "ids": POP, "member": SAM}),
+    ("prognoz", "2026 yilda YaIM qancha bo'ladi?", {"forecast": "2026", "ids": GDP, "member": UZ}),
+    ("prognoz", "Buxoro viloyatida 2027 yilda tug'ilganlar soni prognozi", {"forecast": "2027", "ids": BIRTH, "member": BUX}),
+    ("prognoz", "Какой будет ВВП в 2027 году?", {"forecast": "2027", "ids": GDP, "member": UZ}),
+    ("prognoz", "What will the population of Andijan region be in 2027?", {"forecast": "2027", "ids": POP, "member": AND}),
     ("rad", "Eng yaxshi restoran qayerda?", {"refuse": True}),
     # held-out: written after the first run, to check that the fixes generalise
     ("yangi", "O'zbekiston poytaxti qayer?", {"refuse": True}),
@@ -126,6 +132,13 @@ def truth(ind, member, period):
 def judge(exp, r):
     p = r["parts"][0]
     st = p["status"]
+    if exp.get("forecast"):
+        ind = (p.get("indicator") or {}).get("id")
+        card = (p.get("cards") or [{}])[0]
+        name = db.execute("SELECT name_uz FROM members WHERE id=?", (exp["member"],)).fetchone()["name_uz"]
+        ok = st == "ok" and p.get("intent") == "forecast" and ind in exp["ids"] and card.get("period") == exp["forecast"] \
+            and card.get("member") == name
+        return bool(ok), f"status={st} intent={p.get('intent')} ind={ind} {card.get('period')}"
     if exp.get("refuse"):
         return st != "ok" and not p.get("cards"), f"status={st}"
     if exp.get("ambiguous"):

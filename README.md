@@ -72,3 +72,13 @@ Claude Desktop config (`claude_desktop_config.json`):
   Uzbek answer templates) and the stage-7 verifier: every number in an answer must equal a tool fact, otherwise the
   answer is replaced by a refusal. Works without any LLM key (this is also the fallback engine).
 - Rate limit: 40 questions/min per client IP.
+
+## Forecasting (estimates, not official data)
+
+When a question asks for a period after the last published one (annual, quarterly or monthly), `forecast.py`
+picks a small time-series model per series by rolling-origin backtest and returns an estimate, an uncertainty
+interval and the past error. It is labelled as a forecast everywhere (answer text, UI badge, dashed chart,
+MCP tool `forecast`). Refused beyond 3 years / 8 quarters / 24 months, or when the series is short or unstable.
+
+Out-of-sample check (`python eval/forecast_backtest.py`, last points hidden): median error 5.3 % annual
+(naive guess 5.5 %), 4.0 % quarterly (7.4 %), 4.4 % monthly (10.4 %); the interval covered 71 / 80 / 82 %.

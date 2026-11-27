@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import re
 import time
+from datetime import date
 from typing import Any
 
 from .normalize import MONTHS, ORDINALS, ROMAN, normalize_text, parse_period_expr, region_key, token_match
@@ -29,7 +30,10 @@ COMPARE_WORDS = {"solishtir", "solishtiring", "solishtirib", "taqqosla", "taqqos
 TOP_HIGH = {"yuqori", "kop", "katta", "eng", "birinchi"}
 TOP_LOW = {"past", "kam", "kichik"}
 LATEST_WORDS = {"oxirgi", "songgi", "hozirgi", "joriy", "bugungi", "yangi"}
-FORECAST_WORDS = {"prognoz", "bashorat", "kutilmoqda", "kelgusida", "kelajakda", "boladi", "bolishi", "rejalashtirilgan"}
+FORECAST_WORDS = {"prognoz", "prognozi", "prognozini", "bashorati", "kelasi", "keyingi", "bashorat", "kutilmoqda", "kelgusida", "kelajakda", "boladi", "bolishi", "rejalashtirilgan"}
+# explicit requests for an estimate (a plain "bo'ladi" is not enough to forecast without a year)
+ASK_FORECAST_WORDS = {"prognoz", "prognozi", "prognozini", "bashorat", "bashorati", "kelgusida", "kelajakda",
+                      "kelasi", "keyingi"}
 CITY_WORDS = {"shahri", "shahar", "shahrida", "shaharda", "poytaxt", "poytaxti"}
 REGION_WORDS = {"viloyati", "viloyat", "viloyatida", "viloyatning"}
 REPUBLIC_WORDS = {"respublika", "respublikada", "respublikasi", "ozbekiston", "ozbekistonda", "mamlakat",
@@ -270,6 +274,9 @@ class Agent:
                                        {"label": "Toshkent viloyati", "region": "Toshkent viloyati"}], trace=trace)
 
         periods = [forced_period] if forced_period else find_periods(toks)
+        # "kelasi/keyingi yil" is relative to today, not to the last published year
+        if not periods and any(t in ("kelasi", "keyingi") and n.startswith("yil") for t, n in zip(toks, toks[1:])):
+            periods = [str(date.today().year + 1)]
         partial = None if periods else partial_period(toks)
         latest = bool(set(toks) & LATEST_WORDS) or not periods
         intent = self._intent(toks, norm, len(region_ids), len(periods))
@@ -315,6 +322,13 @@ class Agent:
 
         # candidates: the best few hits (a later hit may carry the requested region/period)
         cand = [h for h in hits if h.score >= hits[0].score - 0.12][:5]
+        # forecasting is for one indicator and one region; rankings/comparisons of estimates are not offered
+        can_forecast = intent in ("value", "growth", "series") and len(region_ids) <= 1
+        target = max(periods, key=_sort_key) if periods else None
+        if can_forecast and not periods and set(toks) & ASK_FORECAST_WORDS:
+            part, refusal = self._try_forecast(cand, region_ids, None, q, trace, hits, q_tokens, forced_ind)
+            if part or refusal:
+                return part or refusal
         if rate_hit and intent == "growth" and not forced_ind:
             cand = [rate_hit] + [h for h in cand if h.indicator_id != rate_hit.indicator_id]
         first_failure = None
@@ -330,6 +344,10 @@ class Agent:
             first_failure = first_failure or part
             if part["status"] == "ambiguous":
                 break
+        # no published value anywhere: if the requested period lies in the future, estimate it
+        if can_forecast and target and first_failure and first_failure["status"] == "no_data":
+            part, refusal = self._try_forecast(cand, region_ids, target, q, trace, hits, q_tokens, forced_ind)
+            return part or refusal or first_failure
         return first_failure
 
     @staticmethod
@@ -404,6 +422,58 @@ class Agent:
         return self._finish_value(res, ind, alts, q, trace, latest=(not periods))
 
     # ---- finishers
+    def _try_forecast(self, cand, region_ids, target, q, trace, hits, q_tokens, forced_ind):
+        """-> (forecast part or None, refusal part explaining why the best candidate cannot be forecast or None)."""
+        region = region_ids[0] if region_ids else None
+        refusal = None
+        for h in cand:
+            res = self._call(trace, "forecast", indicator_id=h.indicator_id, period=target, region=region)
+            if res["status"] == "refused" and res.get("reason") == "not_future":
+                continue
+            if res["status"] not in ("ok", "refused"):
+                continue
+            info = self.s.describe_indicator(h.indicator_id)
+            ind = {"id": info["indicator_id"], "code": info["code"], "name": info["name"], "unit": info["unit"],
+                   "periodicity": info["periodicity"], "is_cumulative": info["is_cumulative"],
+                   "range": info["period_range"]}
+            alts = [x.as_dict() for x in hits if x.indicator_id != h.indicator_id][:4]
+            if res["status"] == "ok":
+                part = self._finish_forecast(res, ind, alts, q, trace)
+                warn = self._warnings(h, cand[0], q_tokens, forced_ind)
+                if warn and part["status"] == "ok":
+                    part["answer"] += "\n\n" + " ".join(warn)
+                    part["notes"] = (part.get("notes") or []) + warn
+                return part, None
+            if refusal is None:
+                refusal = self._part("no_data", q, ind=ind, alternatives=alts, trace=trace,
+                                     answer=_forecast_refusal(res, ind))
+        return None, refusal
+
+    def _finish_forecast(self, res, ind, alts, q, trace):
+        per, mem = res["period"], res["member"]["name"]
+        unit = f" {res['unit']}" if res.get("unit") else ""
+        last = res["last_actual"]
+        change = ""
+        if res["change_pct"] is not None:
+            c = res["change_pct"]
+            verb = "yuqori" if c > 0 else "past" if c < 0 else "farqsiz"
+            change = f" Bu {period_human(res['change_vs'])}dagiga nisbatan {fmt(abs(c))}% {verb}."
+        band = "Taxminiy oraliq (sinovda 70–80% holatda to'g'ri chiqqan)"
+        text = (f"**Prognoz (rasmiy ma'lumot emas):** {period_human(per)}da {mem} bo'yicha «{ind['name']}» taxminan "
+                f"**{fmt(res['value'])}**{unit} bo'lishi mumkin. {band}: {fmt(res['low'])} – {fmt(res['high'])}.\n\n"
+                f"So'nggi haqiqiy qiymat: {fmt(last['value'])} ({period_human(last['period'])}).{change} "
+                f"Usul: {res['model_name']}; o'tmishdagi sinovda o'rtacha xato {fmt(res['error_pct'])}%.")
+        card = {"type": "forecast", "title": ind["name"], "unit": res.get("unit"), "member": mem, "period": per,
+                "period_text": period_human(per), "value": res["value"], "value_text": fmt(res["value"]),
+                "low_text": fmt(res["low"]), "high_text": fmt(res["high"]), "model_name": res["model_name"],
+                "error_text": fmt(res["error_pct"]), "last_text": fmt(last["value"]),
+                "last_period_text": period_human(last["period"]), "history": res["history"], "path": res["path"],
+                "cumulative": res["cumulative"]}
+        return self._part("ok", q, ind=ind, alternatives=alts, trace=trace, answer=text, facts=res["facts"],
+                          cards=[card], notes=res["notes"], source=res["source"],
+                          ignore=[ind["name"], mem, per, band, unit.strip()],
+                          followups=self._followups(ind, res["member"]["id"]), intent="forecast")
+
     def _spark(self, ind_id, member, highlight=None, limit=60):
         res = self.s.get_series(ind_id, member)
         if res["status"] != "ok":
@@ -429,7 +499,7 @@ class Agent:
             txt = f"Bu ko'rsatkich bo'yicha hisob-kitob qilib bo'lmaydi: {reason}."
         else:
             txt = (f"Kechirasiz, «{ind['name']}» bo'yicha so'ralgan ma'lumot bazada yo'q ({reason})." + rng
-                   + " Men taxminiy yoki bashorat qilingan raqam keltirmayman.")
+                   + " O'tgan davrlardagi bo'shliqlarni taxmin bilan to'ldirmayman.")
         st = "no_data" if status in ("no_data", "not_found", "incomplete", "error") else status
         return self._part(st, q, ind=ind, alternatives=alts, trace=trace, answer=txt)
 
@@ -624,6 +694,23 @@ class Agent:
                                   "Savolni aniqroq qilib qayta yozing.")
                 part["cards"] = []
         return part
+
+
+def _forecast_refusal(res: dict, ind: dict) -> str:
+    reason = res.get("reason")
+    limit = {"Yillik": "3 yil", "Choraklik": "8 chorak", "Oylik": "24 oy"}.get(ind["periodicity"], "")
+    why = {
+        "too_far": f"prognoz faqat so'nggi ma'lumotdan {limit} oldinga qilinadi (eng uzoq davr: {period_human(res.get('max_period'))})",
+        "too_short": "ma'lumot qatori prognoz uchun juda qisqa",
+        "unreliable": "o'tmishdagi sinovda xato juda katta, ishonchli prognoz qilib bo'lmaydi",
+        "unknown_cumulative": "qatorning jamlanma yoki jamlanma emasligi aniqlanmagan",
+        "no_full_year": "bu qatordan to'liq yil qiymatini hisoblab bo'lmaydi, chorak yoki oyni ko'rsating",
+        "wrong_frequency": f"ko'rsatkich davriyligi «{ind['periodicity']}», so'ralgan davr turi mos emas",
+        "not_a_time_series": "bu ko'rsatkich yangilanmaydi",
+    }.get(reason, "prognoz qilib bo'lmaydi")
+    rng = ind.get("range") or [None, None]
+    have = f" Mavjud davrlar: {rng[0]} – {rng[1]}." if rng[0] else ""
+    return f"«{ind['name']}» bo'yicha so'ralgan davr bazada yo'q, prognoz ham bermayman: {why}.{have}"
 
 
 def _reason_uz(res: dict) -> str:

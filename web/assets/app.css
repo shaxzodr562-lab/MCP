@@ -306,3 +306,9 @@ footer { padding: 26px 0 40px; color: var(--faint); font-size: 12.5px; text-alig
 .pf b { font-size: 22px; letter-spacing: -.02em; line-height: 1.2; margin-top: 2px; }
 .pf .u { color: var(--muted); font-size: 12px; }
 .pf em { font-style: normal; color: var(--faint); font-size: 11.5px; margin-top: 2px; }
+
+/* ---------- forecast (estimate, visually distinct from published data) ---------- */
+.fc-line { fill: none; stroke: #f59e0b; stroke-width: 2.4; stroke-dasharray: 6 5; }
+.fc-band { fill: #f59e0b; fill-opacity: .16; stroke: none; }
+.big .v.fc { background: none; color: #f59e0b; -webkit-text-fill-color: #f59e0b; }
+.fc-range { color: var(--muted); font-size: 13.5px; margin: 2px 0 10px; }

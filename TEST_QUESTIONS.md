@@ -61,7 +61,7 @@ Kartochkani bossangiz, o'sha ko'rsatkichning dinamikasi chiqadi.
 | Savol | Kutilgan xatti-harakat |
 |---|---|
 | 2031 yilda ishsizlik qancha bo'ladi? | "ma'lumot yo'q", mavjud davrlar 2010–2025 ko'rsatiladi |
-| 2030 yilda YaIM qancha bo'ladi? | rad etadi (prognoz yo'q) |
+| 2030 yilda YaIM qancha bo'ladi? | rad etadi (3 yildan uzoq) |
 | Samarqand viloyatida 1950 yilda aholi soni qancha edi? | rad etadi (davr bazada yo'q) |
 | bitcoin narxi qancha? | "mos ko'rsatkich topilmadi" |
 | Bugun ob-havo qanday? / Prezident kim? | mavzudan tashqari, rad etadi |
@@ -81,3 +81,16 @@ sariq "Eslatma" chiqarishi kerak:
 - **"🔍 Hisob-kitob va manba"**: ko'rsatkich kodi, birligi, bajarilgan bosqichlar va barcha raqamlar.
 - **"Boshqa mos ko'rsatkichlar"**: noto'g'ri ko'rsatkich tanlangan bo'lsa, shu yerdan boshqasini tanlang.
 - Savolni **imlo xatosi** bilan, **kirillda**, **qisqartma** (YaIM) bilan yozib ko'ring.
+
+## 7-daraja: prognoz (kelajak davr, taxmin)
+Javobda sariq **"⚠ Taxmin · rasmiy ma'lumot emas"** belgisi va grafikda punktir chiziq chiqadi. Raqamlar baza yangilansa o'zgaradi.
+
+| Savol | Kutilgan xatti-harakat |
+|---|---|
+| 2027 yilda doimiy aholi soni qancha bo'ladi? | taxmin ≈ 39 727 ming kishi va oraliq |
+| Samarqand viloyatida 2028 yilda aholi soni | taxmin ≈ 4 591 ming kishi |
+| 2026 yilda YaIM qancha bo'ladi? | taxmin ≈ 2 452 699 mlrd so'm (joriy narxlarda) |
+| 2027 yil 1-chorakda o'rtacha oylik ish haqi | choraklik taxmin |
+| 2027 yil mart oyida tashqi savdo aylanmasi | oylik (jamlanma) taxmin |
+| 2027 yilda ishsizlik darajasi | rad etadi: o'tmishdagi sinovda xato katta |
+| 2040 yilda aholi qancha bo'ladi | rad etadi: juda uzoq |

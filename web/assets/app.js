@@ -65,13 +65,18 @@ function countUp(node, value, text, ms = 900) {
 /* ---------- SVG line chart ---------- */
 function lineChart(host, pts, opt = {}) {
   const W = 720, H = opt.h || 210, pl = 66, pr = 14, pt = 14, pb = 28, id = 'c' + (++uid);
-  const vals = pts.map(p => p.value); let mn = Math.min(...vals), mx = Math.max(...vals);
+  const vals = pts.flatMap(p => p.low == null ? [p.value] : [p.value, p.low, p.high]); let mn = Math.min(...vals), mx = Math.max(...vals);
+  const fc = opt.forecastFrom ?? pts.length - 1; // index of the last published point
   if (mn === mx) { mn -= 1; mx += 1; }
   const span = mx - mn, lo = (mn >= 0 && mn - span * .1 < 0) ? 0 : mn - span * .1, hi = mx + span * .1;
   const X = i => pl + (pts.length === 1 ? (W - pl - pr) / 2 : i * (W - pl - pr) / (pts.length - 1));
   const Y = v => pt + (1 - (v - lo) / (hi - lo)) * (H - pt - pb);
-  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)} ${Y(p.value).toFixed(1)}`).join('');
-  const area = `${line}L${X(pts.length - 1).toFixed(1)} ${H - pb}L${X(0).toFixed(1)} ${H - pb}Z`;
+  const seg = (a, b) => pts.slice(a, b + 1).map((p, k) => `${k ? 'L' : 'M'}${X(a + k).toFixed(1)} ${Y(p.value).toFixed(1)}`).join('');
+  const line = seg(0, fc);
+  const area = `${line}L${X(fc).toFixed(1)} ${H - pb}L${X(0).toFixed(1)} ${H - pb}Z`;
+  const future = pts.slice(fc + 1);
+  const band = future.length ? `M${X(fc)} ${Y(pts[fc].value)}` + future.map((p, k) => `L${X(fc + 1 + k)} ${Y(p.high)}`).join('') +
+    future.map((p, k) => `L${X(pts.length - 1 - k)} ${Y(future[future.length - 1 - k].low)}`).join('') + 'Z' : '';
   const ticks = [0, 1, 2, 3].map(k => lo + (hi - lo) * k / 3);
   const nl = Math.min(6, pts.length), lab = [...new Set(Array.from({ length: nl }, (_, k) => Math.round(k * (pts.length - 1) / Math.max(1, nl - 1))))];
   const hi_i = opt.highlight ? pts.findIndex(p => p.period === opt.highlight) : -1;
@@ -83,7 +88,8 @@ function lineChart(host, pts, opt = {}) {
       ${lab.map(i => `<text x="${X(i)}" y="${H - 8}" text-anchor="${i === 0 ? 'start' : i === pts.length - 1 ? 'end' : 'middle'}">${periodShort(pts[i].period)}</text>`).join('')}</g>
     <path class="area-path" d="${area}" fill="url(#ag${id})"/>
     <path class="line-path" d="${line}" style="stroke:url(#lg${id})"/>
-    ${pts.length <= 40 ? pts.map((p, i) => `<circle cx="${X(i)}" cy="${Y(p.value)}" r="2.6" fill="#22d3ee" opacity=".75"/>`).join('') : ''}
+    ${band ? `<path class="fc-band" d="${band}"/><path class="fc-line" d="${seg(fc, pts.length - 1)}"/>` : ''}
+    ${pts.length <= 40 ? pts.map((p, i) => `<circle cx="${X(i)}" cy="${Y(p.value)}" r="2.6" fill="${i > fc ? '#f59e0b' : '#22d3ee'}" opacity=".85"/>`).join('') : ''}
     ${hi_i >= 0 ? `<circle class="hl-ring" cx="${X(hi_i)}" cy="${Y(pts[hi_i].value)}" r="9"/><circle class="hl" cx="${X(hi_i)}" cy="${Y(pts[hi_i].value)}" r="6"/>` : ''}
     <line class="cross" x1="0" x2="0" y1="${pt}" y2="${H - pb}" stroke="var(--accent)" stroke-opacity=".5" style="display:none"/>
     <circle class="dot" r="5.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="3" style="display:none"/>
@@ -95,7 +101,7 @@ function lineChart(host, pts, opt = {}) {
     let i = Math.round((cx - pl) / ((W - pl - pr) / Math.max(1, pts.length - 1))); i = Math.max(0, Math.min(pts.length - 1, i));
     const p = pts[i]; cross.setAttribute('x1', X(i)); cross.setAttribute('x2', X(i)); cross.style.display = '';
     dot.setAttribute('cx', X(i)); dot.setAttribute('cy', Y(p.value)); dot.style.display = '';
-    tip.innerHTML = `<b class="num">${fmtUz(p.value)}</b><span>${periodHuman(p.period)}${opt.unit ? ' · ' + esc(opt.unit) : ''}</span>`;
+    tip.innerHTML = `<b class="num">${fmtUz(p.value)}</b><span>${p.low != null ? 'prognoz · ' : ''}${periodHuman(p.period)}${opt.unit ? ' · ' + esc(opt.unit) : ''}</span>`;
     tip.style.left = Math.min(Math.max(X(i) / W * 100, 14), 86) + '%'; tip.style.top = Y(p.value) / H * 100 + '%'; tip.style.opacity = 1;
   };
   const leave = () => { tip.style.opacity = 0; cross.style.display = dot.style.display = 'none'; };
@@ -180,7 +186,7 @@ async function ask(question, extra = {}, display) {
 function scrollEnd() { requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })); }
 
 /* ---------- rendering answers ---------- */
-const INTENT = { profile: 'Hudud profili', value: 'Qiymat', growth: "O'sish", series: 'Dinamika', compare: 'Taqqoslash', top: 'Reyting' };
+const INTENT = { profile: 'Hudud profili', value: 'Qiymat', growth: "O'sish", series: 'Dinamika', compare: 'Taqqoslash', top: 'Reyting', forecast: 'Prognoz' };
 function renderBot(data, q, extra) {
   const wrap = el('<div class="msg-bot"></div>');
   if (!data.parts.length) wrap.appendChild(el('<div class="answer warn"><div class="a-text"><p>Savol bo\'sh.</p></div></div>'));
@@ -191,7 +197,8 @@ function renderPart(p, q, data) {
   const cls = p.status === 'ok' ? 'ok' : p.status === 'unverified' ? 'bad' : 'warn';
   const tags = [];
   if (p.intent && INTENT[p.intent]) tags.push(`<span class="tag">${INTENT[p.intent]}</span>`);
-  if (p.status === 'ok' && p.verification) tags.push(`<span class="tag good" title="Javobdagi har bir raqam bazadagi qiymatga mos">✓ Tekshirildi · ${p.verification.matched}/${p.verification.checked} raqam bazaga mos</span>`);
+  if (p.intent === 'forecast') tags.push('<span class="tag warn" title="Rasmiy ma\'lumot emas: o\'tgan davrlar asosida kod hisoblagan taxmin">⚠ Taxmin · rasmiy ma\'lumot emas</span>');
+  else if (p.status === 'ok' && p.verification) tags.push(`<span class="tag good" title="Javobdagi har bir raqam bazadagi qiymatga mos">✓ Tekshirildi · ${p.verification.matched}/${p.verification.checked} raqam bazaga mos</span>`);
   if (p.status === 'no_data') tags.push('<span class="tag warn">Ma\'lumot mavjud emas</span>');
   if (p.status === 'no_match') tags.push('<span class="tag warn">Mos ko\'rsatkich yo\'q</span>');
   if (p.status === 'ambiguous') tags.push('<span class="tag warn">Aniqlashtirish kerak</span>');
@@ -252,6 +259,13 @@ function renderCard(c) {
       `<div class="big"><span class="v num">${esc(c.rate_text)}%</span>${g != null ? `<span class="delta ${up ? 'up' : dn ? 'down' : 'flat'}">${up ? '▲' : dn ? '▼' : '•'} <span class="num">${fmtUz(Math.abs(g))}%</span> ${up ? "o'sish" : dn ? 'pasayish' : ''}</span>` : ''}</div>
        <div class="u" style="color:var(--muted);font-size:13px">o'tgan yilga nisbatan, rasmiy o'sish sur'ati</div>`;
     spark();
+  } else if (c.type === 'forecast') {
+    box.innerHTML = meta([['Hudud', c.member], ['Davr', c.period_text], c.cumulative ? ['Turi', 'yil boshidan jamlanma'] : null]) +
+      `<div class="big"><span class="v num fc">≈ ${esc(c.value_text)}</span><span class="u">${esc(c.unit || '')}</span></div>
+       <div class="fc-range">Oraliq: <b class="num">${esc(c.low_text)}</b> – <b class="num">${esc(c.high_text)}</b></div>`;
+    const h = el('<div></div>'); box.appendChild(h);
+    lineChart(h, [...c.history, ...c.path], { unit: c.unit, h: 240, forecastFrom: c.history.length - 1 });
+    box.appendChild(el(`<div class="tiles">${[['So\'nggi haqiqiy', c.last_text, c.last_period_text], ['Usul', c.model_name, 'backtest bilan tanlangan'], ["O'tmishdagi xato", c.error_text + '%', "o'rtacha"]].map(([k, v, e]) => `<div class="tile"><small>${esc(k)}</small><b>${esc(v)}</b><em>${esc(e)}</em></div>`).join('')}</div>`));
   } else if (c.type === 'series') {
     const s = c.stats;
     box.innerHTML = meta([['Hudud', c.member], ['Birlik', c.unit || '—'], c.cumulative ? ['Turi', 'yil boshidan jamlanma'] : null]);
@@ -279,8 +293,8 @@ function renderDetails(p) {
       <dt>Manba</dt><dd><a href="https://siat.stat.uz/" target="_blank" rel="noopener">siat.stat.uz</a> · ${esc(src.license || 'CC BY 4.0')}</dd></dl>` : ''}
       <div class="steps">${steps}</div>
       ${(p.notes || []).length ? `<p style="color:var(--muted);margin:6px 0">${p.notes.map(esc).join('<br>')}</p>` : ''}
-      <table class="facts"><tr><th>Tur</th><th>Nomi / davr</th><th>Qiymat</th></tr>${facts.map(f => `<tr><td>${f.kind === 'calc' ? 'hisoblangan' : 'bazadan'}</td><td>${esc(f.name || periodHuman(f.period) + (f.member ? ' · ' + f.member : ''))}</td><td class="num">${fmtUz(f.value)}</td></tr>`).join('')}</table>
-      <p style="color:var(--faint);margin:10px 0 0">Javobdagi har bir raqam yuqoridagi qiymatlardan biriga teng bo'lishi shart; aks holda javob ko'rsatilmaydi.</p>
+      <table class="facts"><tr><th>Tur</th><th>Nomi / davr</th><th>Qiymat</th></tr>${facts.map(f => `<tr><td>${f.kind === 'calc' ? 'hisoblangan' : f.kind === 'forecast' ? 'prognoz' : 'bazadan'}</td><td>${esc(f.name || periodHuman(f.period) + (f.member ? ' · ' + f.member : ''))}</td><td class="num">${fmtUz(f.value)}</td></tr>`).join('')}</table>
+      <p style="color:var(--faint);margin:10px 0 0">Javobdagi har bir raqam yuqoridagi qiymatlardan biriga teng bo'lishi shart; aks holda javob ko'rsatilmaydi.${p.intent === 'forecast' ? ' «prognoz» qatorlari bazadan emas, model hisobi.' : ''}</p>
     </div></div>`);
   $('button', d).onclick = () => { d.classList.toggle('open'); $('button', d).setAttribute('aria-expanded', d.classList.contains('open')); };
   return d;

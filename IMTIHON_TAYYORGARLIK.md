@@ -5,7 +5,7 @@ Bu hujjat ustozga loyihani tushuntirish va savollarga javob berish uchun. Avval 
 ---
 
 ## 1. 30 soniyalik tanishtiruv
-> Men O'zbekiston rasmiy statistikasi (siat.stat.uz) bo'yicha savollarga javob beradigan tizim yaratdim. Foydalanuvchi oddiy tilda yozadi (o'zbek lotin/kirill, rus, ingliz), tizim savolni tushunadi, **raqamni bazadan kod orqali oladi yoki hisoblaydi** va javobdagi har bir raqamni qayta tekshiradi. Til modeli faqat savolni tushunish uchun ishlatiladi, raqam hosil qilmaydi. Shuning uchun tizim raqam to'qimaydi, bazada bo'lmagan davr yoki prognoz so'ralsa, rad etadi. Arxitektura RAG emas, **MCP** (Model Context Protocol): model aniq tool'lar orqali ma'lumot oladi.
+> Men O'zbekiston rasmiy statistikasi (siat.stat.uz) bo'yicha savollarga javob beradigan tizim yaratdim. Foydalanuvchi oddiy tilda yozadi (o'zbek lotin/kirill, rus, ingliz), tizim savolni tushunadi, **raqamni bazadan kod orqali oladi yoki hisoblaydi** va javobdagi har bir raqamni qayta tekshiradi. Til modeli faqat savolni tushunish uchun ishlatiladi, raqam hosil qilmaydi. Shuning uchun tizim raqam to'qimaydi, bazada bo'lmagan o'tgan davr so'ralsa, rad etadi; kelajak uchun faqat alohida belgilangan taxmin beradi. Arxitektura RAG emas, **MCP** (Model Context Protocol): model aniq tool'lar orqali ma'lumot oladi.
 
 ## 2. Muammo va maqsad
 - siat.stat.uz da **3261 ta ko'rsatkich** (5 soha → 26 bo'lim → 66 guruh → ko'rsatkichlar), har biri hudud va davr kesimida jadval. Kerakli raqamni qo'lda topish qiyin.
@@ -21,7 +21,7 @@ Bu hujjat ustozga loyihani tushuntirish va savollarga javob berish uchun. Avval 
 | Tekshirish | Qiyin | Har raqam faktlar bilan solishtiriladi |
 | Davr yo'q bo'lsa | Yaqin matnni "to'qib" berishi mumkin | Tool "ma'lumot yo'q" qaytaradi |
 
-**MCP nima?** Model Context Protocol: LLM (yoki ilova) tashqi tool'larni standart usulda chaqirishi uchun protokol. Tool: nomi, kirish parametrlari va aniq natija qaytaradigan funksiya. Bizning server 9 ta tool beradi (`src/siat_mcp/server.py`); uni Claude Desktop kabi har qanday MCP mijozi ulay oladi.
+**MCP nima?** Model Context Protocol: LLM (yoki ilova) tashqi tool'larni standart usulda chaqirishi uchun protokol. Tool: nomi, kirish parametrlari va aniq natija qaytaradigan funksiya. Bizning server 10 ta tool beradi (`src/siat_mcp/server.py`); uni Claude Desktop kabi har qanday MCP mijozi ulay oladi.
 
 ## 4. Arxitektura
 
@@ -61,7 +61,7 @@ Fayllar: `etl.py` (yuklash), `classify.py` (kumulyativ), `normalize.py`, `search
 | 6 | LLM integratsiyasi | Gemini savolni tushunadi; xato bo'lsa, shablonli zaxira dvigatel (shartnomaga mos "fallback") |
 | 7 | Anti-gallyutsinatsiya | `verify_answer`: javobdagi har bir raqam tool faktiga teng bo'lishi shart |
 | 8 | API + lokal muhit | FastAPI, rate limit (40/daq), `run-web.bat`, F5 sozlamasi |
-| 9 | Test + hujjat | 25 ta pytest, README, TEST_QUESTIONS.md |
+| 9 | Test + hujjat | 31 ta pytest, README, TEST_QUESTIONS.md |
 
 Halol eslatma: Gemini bilan LLM **tool'larni o'zi chaqirmaydi**. U savolni qayta yozadi, tool'larni esa bizning dvigatel chaqiradi. Bu ongli qaror: xavfsizroq va tekshiriladigan.
 
@@ -77,7 +77,7 @@ Halol eslatma: Gemini bilan LLM **tool'larni o'zi chaqirmaydi**. U savolni qayta
 1. **Raqamni LLM emas, kod beradi.** LLM bazani ko'rmaydi.
 2. **Har natijada `source` va `facts`** (ko'rsatkich kodi, birlik, davr, qiymat).
 3. **`verify_answer`:** javob matnidagi har raqam faktlardagiga teng (to'g'ri yaxlitlashga ruxsat). Mos kelmasa, javob `unverified` va rad matni.
-4. **Rad etish qoidalari:** bazada bo'lmagan davr, prognoz (2031), mavzudan tashqari savol, topilmagan ko'rsatkich. Taxminiy raqam berilmaydi. Noaniq javobda sariq "Eslatma" chiqadi (masalan "Rossiya bilan savdo" → umumiy savdo + ogohlantirish).
+4. **Rad etish qoidalari:** bazada bo'lmagan o'tgan davr, juda uzoq yoki ishonchsiz prognoz, mavzudan tashqari savol, topilmagan ko'rsatkich. Noaniq javobda sariq "Eslatma" chiqadi.
 
 ---
 
@@ -86,7 +86,7 @@ Halol eslatma: Gemini bilan LLM **tool'larni o'zi chaqirmaydi**. U savolni qayta
 **Konsepsiya**
 
 1. **Loyiha nima qiladi?** Rasmiy statistika bo'yicha tabiiy tildagi savolga aniq, tekshirilgan, manbali javob beradi.
-2. **MCP nima?** LLM va tashqi tool/ma'lumot orasidagi standart protokol. Tool nomi, parametrlari va aniq natijasi bor. Bizda 9 ta tool.
+2. **MCP nima?** LLM va tashqi tool/ma'lumot orasidagi standart protokol. Tool nomi, parametrlari va aniq natijasi bor. Bizda 10 ta tool.
 3. **Nega RAG emas?** RAG matn bo'lagini topib, LLM o'qiydi, raqamda adashishi va hisoblashda xato qilishi mumkin. Bizda ma'lumot jadval, shuning uchun SQL/Python bilan aniq olamiz va tekshiramiz (3-bo'lim jadvali).
 4. **Nega vektor baza / embedding ishlatmadingiz?** Ko'rsatkich nomlari qisqa va kam (3261), IDF-vaznli so'z qidiruvi yetarli, tez (millisekundlar), tushuntirish oson va tashqi xizmat talab qilmaydi. Kamchiligi: sinonimlarni qo'lda yozish kerak. Buni Gemini qisman hal qiladi.
 5. **LLM nima ish qiladi?** Faqat savolni tushunadi va standart o'zbekcha savolga aylantiradi (til aniqlash, imlo, so'zlashuv so'zlarini standart atamaga almashtirish, ko'p savolni bo'lish). Raqam yozmaydi va bazaga kirmaydi.
@@ -118,13 +118,14 @@ Halol eslatma: Gemini bilan LLM **tool'larni o'zi chaqirmaydi**. U savolni qayta
 22. **API kalit qayerda?** `.env` faylida (`.gitignore` da), kodda emas. Kalit chatda ko'rinib qolgani uchun uni yangilash tavsiya qilingan.
 23. **Maxfiylik?** Gemini'ga faqat foydalanuvchi savol matni ketadi; baza va natijalar ketmaydi.
 24. **Suiste'molga qarshi?** `/api/ask` uchun daqiqasiga 40 so'rov chegarasi (IP bo'yicha) va savol uzunligi 600 belgi bilan cheklangan.
-25. **Qanday sinadingiz?** 25 ta avtomatik test (pytest): verifier, rasmiy o'sish sur'ati, rad etishlar, Toshkent noaniqligi, kirill, ko'p savol, API, Gemini'ni soxta qiymat bilan almashtirish va zaxira. Qo'lda ~40 savol (TEST_QUESTIONS.md: oddiydan tuzoqlargacha).
-26. **Aniqlik necha foiz?** 71 savollik baholash to'plamida (`eval/run_eval.py`, hisobot `eval/REPORT.md`): **Gemini bilan 97,2 % (69/71)**, Gemini'siz 74,6 % (53/71). Rus tilida Gemini'siz 0/6, Gemini bilan 6/6. To'g'rilik bazadagi haqiqiy qiymat bilan tekshirildi (tizimning o'z javobi bilan emas). Cheklov: namuna kichik (71) va savollarni o'zim yozganman, shuning uchun "97 % atrofida" deyman. Qolgan 2 xato: noto'g'ri, lekin yaqin ko'rsatkich tanlash.
+25. **Qanday sinadingiz?** 31 ta avtomatik test (pytest): verifier, rasmiy o'sish sur'ati, rad etishlar, Toshkent noaniqligi, kirill, ko'p savol, API, Gemini'ni soxta qiymat bilan almashtirish va zaxira. Qo'lda ~40 savol (TEST_QUESTIONS.md: oddiydan tuzoqlargacha).
+26. **Aniqlik necha foiz?** 76 savollik baholash to'plamida (`eval/run_eval.py`, hisobot `eval/REPORT.md`): **Gemini bilan 96,1 % (73/76)**, Gemini'siz 73,7 % (56/76). To'g'rilik bazadagi haqiqiy qiymat bilan tekshirildi. Cheklov: namuna kichik va savollarni o'zim yozganman, shuning uchun "96 % atrofida" deyman.
 27. **Baholash nimani topdi?** Gemini "Prezident kim?" ni mavzudan tashqari deb tushunmay, javob berib yuborgan edi, shuningdek "Toshkent" ni so'ramasdan "shahri" qilgan; qoidali dvigatel "O'zbekiston poytaxti qayer?" ga profil bergan. Uchalasi tuzatildi (`on_topic` bayrog'i, ko'rsatma qoidalari, profil sharti). Bu baholash nega kerakligini ko'rsatadi.
 **Cheklovlar (o'zingiz aytsangiz, ishonchni oshiradi)**
 
 28. **Nimalar ishlamaydi?** "Inflyatsiya" nomli ko'rsatkich yo'q: iste'mol narxlari indeksi beriladi va ogohlantirish chiqadi. Ayrim hududlarda aniq ko'rsatkich yo'q bo'lsa, yaqin ko'rsatkich beriladi va ogohlantirish chiqadi. Javob matni hozir faqat o'zbekcha. Prognoz va ma'lumotda yo'q davrlar rad etiladi. 29 ta ko'rsatkichda kumulyativlik noma'lum.
-29. **Nega prognoz bermaydi?** Rasmiy statistika vositasi, taxmin raqam bermaydi. Bu ataylab qaror.
+29. **Prognoz qanday ishlaydi va qanchalik aniq?** Kelajak davr so'ralsa, `forecast.py` bir nechta sodda modelni o'tmishda sinab (backtest), eng aniqini tanlaydi va taxmin + oraliq + o'tgan xatoni beradi. Yashirilgan ma'lumotda median xato: yillik 5,3 % (sodda taxmin 5,5 %), choraklik 4,0 % (7,4 %), oylik 4,4 % (10,4 %); oraliq 71–82 % holatni qamraydi. Yillikda model sodda taxmindan deyarli ustun emas, buni ochiq aytaman. 3 yil / 8 chorak / 24 oydan uzoqqa yoki xato katta bo'lsa, rad etadi. Prognoz rasmiy ma'lumot emas va shunday belgilanadi.
+29a. **Nega neyron tarmoq (LSTM, Prophet) emas?** Qatorlar qisqa (yillikda 15 ta nuqta atrofida), murakkab model moslashib ketadi; sodda modellar tushuntirishga oson.
 30. **Kelajakda nima qo'shasiz?** Javobni foydalanuvchi tilida chiqarish, baholash to'plami, avtomatik yangilash, Docker va doimiy hosting, Gemini'ga nomzod ko'rsatkichlar ro'yxatini berib tanlatish.
 31. **Nega Python va FastAPI?** Rasmiy MCP SDK Python'da, SQLite o'rnatilgan, FastAPI tez va avtomatik hujjat (`/api/docs`) beradi.
 

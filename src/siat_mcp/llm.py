@@ -72,6 +72,8 @@ Rules:
   Never guess a region the user did not mention. If the user says just "Toshkent", keep it as "Toshkent".
 - Keep years as digits ("2024 yilda"), quarters as "2-chorak", months as Uzbek names (mart, aprel...).
   Resolve relative words ("last year", "o'tgan yil") using today's date.
+- Questions about the future of an indicator ARE statistics questions (on_topic=true). Keep the future year; if the
+  user asks for a forecast without a year, include the word "prognozi".
 - Keep the intent in the question: "necha foiz o'sdi", "dinamikasi", "solishtir", "eng yuqori", "eng past".
 - If a region is mentioned but no specific indicator, write "<region> haqida ma'lumot ber".
 - Never add information the user did not write: no extra region, no "O'zbekiston Respublikasi", no year. Keep "Toshkent"

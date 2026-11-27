@@ -1,7 +1,7 @@
 {
  "mode": "rules",
- "correct": 53,
- "total": 71,
+ "correct": 56,
+ "total": 76,
  "fallbacks": 0,
  "cases": [
   {
@@ -10,7 +10,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 201,
+   "ms": 191,
    "interpreted_as": null
   },
   {
@@ -19,7 +19,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 102,
+   "ms": 77,
    "interpreted_as": null
   },
   {
@@ -28,7 +28,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 145,
+   "ms": 113,
    "interpreted_as": null
   },
   {
@@ -37,7 +37,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 91,
+   "ms": 69,
    "interpreted_as": null
   },
   {
@@ -46,7 +46,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 133,
+   "ms": 143,
    "interpreted_as": null
   },
   {
@@ -55,7 +55,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 89,
+   "ms": 72,
    "interpreted_as": null
   },
   {
@@ -64,7 +64,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 82,
+   "ms": 110,
    "interpreted_as": null
   },
   {
@@ -73,7 +73,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 163,
+   "ms": 146,
    "interpreted_as": null
   },
   {
@@ -82,7 +82,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 303,
+   "ms": 296,
    "interpreted_as": null
   },
   {
@@ -91,7 +91,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 116,
+   "ms": 118,
    "interpreted_as": null
   },
   {
@@ -100,7 +100,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 114,
+   "ms": 108,
    "interpreted_as": null
   },
   {
@@ -109,7 +109,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 79,
+   "ms": 74,
    "interpreted_as": null
   },
   {
@@ -118,7 +118,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 74,
+   "ms": 79,
    "interpreted_as": null
   },
   {
@@ -127,7 +127,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 76,
+   "ms": 72,
    "interpreted_as": null
   },
   {
@@ -136,7 +136,7 @@
    "ok": false,
    "why": "wrong indicator 2762: Eksport tovarlar hajmi (yillik)",
    "engine": "rules",
-   "ms": 75,
+   "ms": 78,
    "interpreted_as": null
   },
   {
@@ -145,7 +145,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 73,
+   "ms": 112,
    "interpreted_as": null
   },
   {
@@ -154,7 +154,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 149,
+   "ms": 146,
    "interpreted_as": null
   },
   {
@@ -163,7 +163,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 111,
+   "ms": 124,
    "interpreted_as": null
   },
   {
@@ -172,7 +172,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 81,
+   "ms": 74,
    "interpreted_as": null
   },
   {
@@ -181,7 +181,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 108,
+   "ms": 105,
    "interpreted_as": null
   },
   {
@@ -190,7 +190,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 83,
+   "ms": 82,
    "interpreted_as": null
   },
   {
@@ -199,7 +199,7 @@
    "ok": false,
    "why": "status=no_data",
    "engine": "rules",
-   "ms": 110,
+   "ms": 131,
    "interpreted_as": null
   },
   {
@@ -208,7 +208,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 185,
+   "ms": 190,
    "interpreted_as": null
   },
   {
@@ -217,7 +217,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 119,
+   "ms": 111,
    "interpreted_as": null
   },
   {
@@ -226,7 +226,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 42,
+   "ms": 38,
    "interpreted_as": null
   },
   {
@@ -235,7 +235,7 @@
    "ok": false,
    "why": "wrong indicator 225: Tug‘ilganlar soni (o‘g‘il bolalar)",
    "engine": "rules",
-   "ms": 87,
+   "ms": 120,
    "interpreted_as": null
   },
   {
@@ -244,7 +244,7 @@
    "ok": false,
    "why": "status=no_data",
    "engine": "rules",
-   "ms": 91,
+   "ms": 80,
    "interpreted_as": null
   },
   {
@@ -253,7 +253,7 @@
    "ok": false,
    "why": "wrong indicator 1313: Ishsizlar soni",
    "engine": "rules",
-   "ms": 80,
+   "ms": 87,
    "interpreted_as": null
   },
   {
@@ -262,7 +262,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 149,
+   "ms": 145,
    "interpreted_as": null
   },
   {
@@ -271,7 +271,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 74,
+   "ms": 76,
    "interpreted_as": null
   },
   {
@@ -280,7 +280,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 113,
+   "ms": 116,
    "interpreted_as": null
   },
   {
@@ -289,7 +289,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 72,
+   "ms": 74,
    "interpreted_as": null
   },
   {
@@ -298,7 +298,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 212,
+   "ms": 230,
    "interpreted_as": null
   },
   {
@@ -307,7 +307,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 260,
+   "ms": 261,
    "interpreted_as": null
   },
   {
@@ -316,7 +316,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 226,
+   "ms": 224,
    "interpreted_as": null
   },
   {
@@ -325,7 +325,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 179,
+   "ms": 183,
    "interpreted_as": null
   },
   {
@@ -334,7 +334,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 258,
+   "ms": 264,
    "interpreted_as": null
   },
   {
@@ -343,7 +343,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 263,
+   "ms": 254,
    "interpreted_as": null
   },
   {
@@ -352,7 +352,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 183,
+   "ms": 180,
    "interpreted_as": null
   },
   {
@@ -361,7 +361,7 @@
    "ok": false,
    "why": "expected 5.4 for Samarqand viloyati 2024, got [('O‘zbekiston Respublikasi', '2024', 5.5)]",
    "engine": "rules",
-   "ms": 156,
+   "ms": 158,
    "interpreted_as": null
   },
   {
@@ -379,7 +379,7 @@
    "ok": false,
    "why": "wrong indicator 1133: Boshqa davlatlar bilan eksportning o‘sish sur’ati (yillik)",
    "engine": "rules",
-   "ms": 74,
+   "ms": 75,
    "interpreted_as": null
   },
   {
@@ -388,7 +388,7 @@
    "ok": false,
    "why": "wrong indicator 1044: O‘zbekiston Respublikasiga o‘qish maqsadida tashrif buyurgan chet el fuqarolari soni",
    "engine": "rules",
-   "ms": 125,
+   "ms": 157,
    "interpreted_as": null
   },
   {
@@ -397,7 +397,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 217,
+   "ms": 231,
    "interpreted_as": null
   },
   {
@@ -406,7 +406,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 114,
+   "ms": 119,
    "interpreted_as": null
   },
   {
@@ -415,7 +415,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 148,
+   "ms": 144,
    "interpreted_as": null
   },
   {
@@ -424,7 +424,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 155,
+   "ms": 165,
    "interpreted_as": null
   },
   {
@@ -433,7 +433,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 331,
+   "ms": 341,
    "interpreted_as": null
   },
   {
@@ -442,7 +442,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 75,
+   "ms": 99,
    "interpreted_as": null
   },
   {
@@ -451,7 +451,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 114,
+   "ms": 117,
    "interpreted_as": null
   },
   {
@@ -460,7 +460,7 @@
    "ok": true,
    "why": "status=ok",
    "engine": "rules",
-   "ms": 836,
+   "ms": 866,
    "interpreted_as": null
   },
   {
@@ -469,7 +469,7 @@
    "ok": true,
    "why": "status=ok",
    "engine": "rules",
-   "ms": 825,
+   "ms": 842,
    "interpreted_as": null
   },
   {
@@ -487,7 +487,7 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "rules",
-   "ms": 78,
+   "ms": 79,
    "interpreted_as": null
   },
   {
@@ -496,7 +496,7 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "rules",
-   "ms": 114,
+   "ms": 122,
    "interpreted_as": null
   },
   {
@@ -505,7 +505,7 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "rules",
-   "ms": 74,
+   "ms": 77,
    "interpreted_as": null
   },
   {
@@ -523,7 +523,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 110,
+   "ms": 120,
    "interpreted_as": null
   },
   {
@@ -541,7 +541,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 106,
+   "ms": 107,
    "interpreted_as": null
   },
   {
@@ -550,16 +550,61 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 177,
+   "ms": 185,
    "interpreted_as": null
   },
   {
-   "cat": "rad",
+   "cat": "prognoz",
    "q": "2027 yilda aholi soni qancha bo'ladi?",
    "ok": true,
-   "why": "status=no_data",
+   "why": "status=ok intent=forecast ind=246 2027",
    "engine": "rules",
-   "ms": 73,
+   "ms": 80,
+   "interpreted_as": null
+  },
+  {
+   "cat": "prognoz",
+   "q": "Samarqand viloyatida 2028 yilda aholi soni",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=246 2028",
+   "engine": "rules",
+   "ms": 85,
+   "interpreted_as": null
+  },
+  {
+   "cat": "prognoz",
+   "q": "2026 yilda YaIM qancha bo'ladi?",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=1920 2026",
+   "engine": "rules",
+   "ms": 115,
+   "interpreted_as": null
+  },
+  {
+   "cat": "prognoz",
+   "q": "Buxoro viloyatida 2027 yilda tug'ilganlar soni prognozi",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=223 2027",
+   "engine": "rules",
+   "ms": 113,
+   "interpreted_as": null
+  },
+  {
+   "cat": "prognoz",
+   "q": "Какой будет ВВП в 2027 году?",
+   "ok": false,
+   "why": "status=no_match intent=None ind=None None",
+   "engine": "rules",
+   "ms": 174,
+   "interpreted_as": null
+  },
+  {
+   "cat": "prognoz",
+   "q": "What will the population of Andijan region be in 2027?",
+   "ok": false,
+   "why": "status=no_match intent=None ind=None None",
+   "engine": "rules",
+   "ms": 193,
    "interpreted_as": null
   },
   {
@@ -568,7 +613,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 113,
+   "ms": 108,
    "interpreted_as": null
   },
   {
@@ -577,7 +622,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 38,
+   "ms": 44,
    "interpreted_as": null
   },
   {
@@ -586,7 +631,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 140,
+   "ms": 142,
    "interpreted_as": null
   },
   {
@@ -595,7 +640,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 71,
+   "ms": 73,
    "interpreted_as": null
   },
   {
@@ -613,7 +658,7 @@
    "ok": false,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 78,
+   "ms": 85,
    "interpreted_as": null
   },
   {
@@ -622,7 +667,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 74,
+   "ms": 71,
    "interpreted_as": null
   },
   {
@@ -631,7 +676,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 117,
+   "ms": 109,
    "interpreted_as": null
   },
   {
@@ -640,7 +685,7 @@
    "ok": true,
    "why": "ok",
    "engine": "rules",
-   "ms": 73,
+   "ms": 86,
    "interpreted_as": null
   }
  ]

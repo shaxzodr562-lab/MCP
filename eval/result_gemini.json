@@ -1,8 +1,8 @@
 {
  "mode": "gemini",
- "correct": 69,
- "total": 71,
- "fallbacks": 8,
+ "correct": 73,
+ "total": 76,
+ "fallbacks": 12,
  "cases": [
   {
    "cat": "oddiy",
@@ -10,7 +10,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 5511,
+   "ms": 2078,
    "interpreted_as": "2023 yilda yalpi ichki mahsulot hajmi qancha edi?"
   },
   {
@@ -19,8 +19,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 5050,
-   "interpreted_as": "2024 yilda O'zbekistonda ishsizlik darajasi qancha?"
+   "ms": 1850,
+   "interpreted_as": "2024 yilda ishsizlik darajasi qancha?"
   },
   {
    "cat": "oddiy",
@@ -28,8 +28,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3372,
-   "interpreted_as": "2022 yilda O'zbekistonda doimiy aholi soni qancha?"
+   "ms": 1799,
+   "interpreted_as": "2022 yilda O'zbekiston doimiy aholi soni qancha?"
   },
   {
    "cat": "oddiy",
@@ -37,7 +37,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2517,
+   "ms": 1586,
    "interpreted_as": "2023 yilda tug'ilganlar soni qancha?"
   },
   {
@@ -46,7 +46,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2238,
+   "ms": 1711,
    "interpreted_as": "2024 yilda nikohdan ajralishlar soni qancha?"
   },
   {
@@ -55,7 +55,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2556,
+   "ms": 1802,
    "interpreted_as": "2024 yilda O'zbekiston eksport hajmi qancha bo'lgan?"
   },
   {
@@ -64,8 +64,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2272,
-   "interpreted_as": "2023 yilda O'zbekistonning import hajmi qancha?"
+   "ms": 1761,
+   "interpreted_as": "2023 yilda O'zbekiston import hajmi qancha?"
   },
   {
    "cat": "oddiy",
@@ -73,7 +73,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2373,
+   "ms": 1740,
    "interpreted_as": "2022 yilda qishloq xo'jaligi mahsulotlari umumiy hajmi qancha?"
   },
   {
@@ -82,8 +82,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 15603,
-   "interpreted_as": "2024 yilda yalpi ichki mahsulotning o'sish sur'ati qanday?"
+   "ms": 2061,
+   "interpreted_as": "2024 yilda yalpi ichki mahsulot necha foiz o'sdi?"
   },
   {
    "cat": "oddiy",
@@ -91,7 +91,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3094,
+   "ms": 1967,
    "interpreted_as": "2022 yilda yalpi ichki mahsulot hajmi qancha?"
   },
   {
@@ -100,7 +100,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2881,
+   "ms": 2243,
    "interpreted_as": "Samarqand viloyati 2024 yilda yalpi hududiy mahsulot hajmi qancha?"
   },
   {
@@ -109,7 +109,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3903,
+   "ms": 1867,
    "interpreted_as": "Buxoro viloyatida 2023 yilda ishsizlik darajasi qancha?"
   },
   {
@@ -118,7 +118,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2300,
+   "ms": 6510,
    "interpreted_as": "Xorazm viloyati doimiy aholi soni 2024 yilda"
   },
   {
@@ -127,7 +127,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 8658,
+   "ms": 2193,
    "interpreted_as": "Farg'ona viloyatida 2022 yilda tug'ilganlar soni qancha?"
   },
   {
@@ -136,7 +136,7 @@
    "ok": false,
    "why": "wrong indicator 2762: Eksport tovarlar hajmi (yillik)",
    "engine": "gemini+rules",
-   "ms": 2171,
+   "ms": 1961,
    "interpreted_as": "Navoiy viloyati 2023 yilda eksport hajmi qancha?"
   },
   {
@@ -145,7 +145,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2633,
+   "ms": 3394,
    "interpreted_as": "Qashqadaryo viloyatida 2024 yilda import hajmi qancha?"
   },
   {
@@ -154,7 +154,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2804,
+   "ms": 4822,
    "interpreted_as": "Andijon viloyati 2023 yilda qishloq xo'jaligi mahsulotlari hajmi"
   },
   {
@@ -163,7 +163,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2195,
+   "ms": 6352,
    "interpreted_as": "Toshkent shahri 2024 yilda yalpi hududiy mahsulot hajmi"
   },
   {
@@ -172,7 +172,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3676,
+   "ms": 2672,
    "interpreted_as": "Surxondaryo viloyati ishsizlik darajasi 2022 yilda"
   },
   {
@@ -181,8 +181,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2757,
-   "interpreted_as": "Namangan viloyatida 2023 yilda nikohdan ajralishlar soni"
+   "ms": 1682,
+   "interpreted_as": "Namangan viloyatida 2023 yilda nikohdan ajralishlar soni qancha?"
   },
   {
    "cat": "erkin/imlo",
@@ -190,7 +190,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2701,
+   "ms": 2123,
    "interpreted_as": "Samarqand viloyati bo'yicha 2024 yilda ishsizlik darajasi qancha?"
   },
   {
@@ -199,7 +199,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2414,
+   "ms": 2008,
    "interpreted_as": "Buxoro viloyati doimiy aholi soni 2023 yilda qancha?"
   },
   {
@@ -208,7 +208,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 1962,
+   "ms": 1804,
    "interpreted_as": "2023 yilda O'zbekiston yalpi ichki mahsulot hajmi qancha?"
   },
   {
@@ -217,7 +217,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2477,
+   "ms": 1895,
    "interpreted_as": "Xorazm viloyati bo'yicha 2022 yildagi ishsizlik darajasi"
   },
   {
@@ -226,7 +226,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 4310,
+   "ms": 1897,
    "interpreted_as": "2024 yilda O'zbekistonning eksport hajmi qancha bo'ldi?"
   },
   {
@@ -235,7 +235,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3300,
+   "ms": 1937,
    "interpreted_as": "2023 yilda tug'ilganlar soni qancha"
   },
   {
@@ -244,7 +244,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2715,
+   "ms": 16770,
    "interpreted_as": "Andijon viloyati doimiy aholi soni 2024 yilda qancha"
   },
   {
@@ -253,8 +253,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2317,
-   "interpreted_as": "Jizzax viloyati bo'yicha 2023 yilda ishsizlik darajasi qancha?"
+   "ms": 3343,
+   "interpreted_as": "Jizzax viloyatida 2023 yilda ishsizlik darajasi qancha?"
   },
   {
    "cat": "kirill",
@@ -262,7 +262,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 6907,
+   "ms": 1606,
    "interpreted_as": "O'zbekistonda 2023 yilda yalpi ichki mahsulot hajmi qancha?"
   },
   {
@@ -271,7 +271,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 6358,
+   "ms": 1682,
    "interpreted_as": "Samarqand viloyati 2024 yilda ishsizlik darajasi"
   },
   {
@@ -280,7 +280,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2026,
+   "ms": 2054,
    "interpreted_as": "Buxoro viloyati doimiy aholi soni 2023 yilda"
   },
   {
@@ -288,9 +288,9 @@
    "q": "2024 йилда экспорт ҳажми",
    "ok": true,
    "why": "ok",
-   "engine": "gemini+rules",
-   "ms": 1887,
-   "interpreted_as": "2024 yilda O'zbekiston eksport hajmi"
+   "engine": "rules",
+   "ms": 11608,
+   "interpreted_as": null
   },
   {
    "cat": "rus",
@@ -298,8 +298,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 7447,
-   "interpreted_as": "2023 yilda O'zbekistonning yalpi ichki mahsuloti qancha bo'lgan?"
+   "ms": 2556,
+   "interpreted_as": "O'zbekistonning 2023 yildagi yalpi ichki mahsuloti qancha?"
   },
   {
    "cat": "rus",
@@ -307,7 +307,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2020,
+   "ms": 1737,
    "interpreted_as": "Samarqand viloyati ishsizlik darajasi 2024 yilda"
   },
   {
@@ -316,7 +316,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 1912,
+   "ms": 1794,
    "interpreted_as": "Buxoro viloyati doimiy aholi soni 2023 yilda"
   },
   {
@@ -325,7 +325,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 4525,
+   "ms": 2049,
    "interpreted_as": "O'zbekistonning 2024 yildagi eksport hajmi"
   },
   {
@@ -334,8 +334,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 1942,
-   "interpreted_as": "2023 yilda O'zbekistonda tug'ilganlar soni qancha?"
+   "ms": 1720,
+   "interpreted_as": "O'zbekistonda 2023 yilda tug'ilganlar soni qancha?"
   },
   {
    "cat": "rus",
@@ -343,8 +343,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 5839,
-   "interpreted_as": "2024 yilda O'zbekistonda nikohdan ajralishlar soni qancha?"
+   "ms": 1826,
+   "interpreted_as": "O'zbekistonda 2024 yilda nikohdan ajralishlar soni qancha?"
   },
   {
    "cat": "ingliz",
@@ -352,8 +352,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 13556,
-   "interpreted_as": "O'zbekistonning 2023 yildagi yalpi ichki mahsulot hajmi qancha?"
+   "ms": 1884,
+   "interpreted_as": "2023 yilda O'zbekistonning yalpi ichki mahsuloti qancha bo'lgan?"
   },
   {
    "cat": "ingliz",
@@ -361,7 +361,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 5597,
+   "ms": 1574,
    "interpreted_as": "Samarqand viloyati ishsizlik darajasi 2024 yilda"
   },
   {
@@ -370,8 +370,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2784,
-   "interpreted_as": "Buxoro viloyati doimiy aholi soni 2023 yilda qancha bo'lgan?"
+   "ms": 1965,
+   "interpreted_as": "2023 yilda Buxoro viloyati doimiy aholi soni qancha?"
   },
   {
    "cat": "ingliz",
@@ -379,8 +379,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 1976,
-   "interpreted_as": "O'zbekistonning 2024 yildagi eksport hajmi qancha?"
+   "ms": 1803,
+   "interpreted_as": "O'zbekiston eksport hajmi 2024 yilda"
   },
   {
    "cat": "ingliz",
@@ -388,8 +388,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2896,
-   "interpreted_as": "2023 yilda O'zbekistonda tug'ilganlar soni qancha?"
+   "ms": 1500,
+   "interpreted_as": "O'zbekistonda 2023 yilda tug'ilganlar soni"
   },
   {
    "cat": "ingliz",
@@ -397,7 +397,7 @@
    "ok": false,
    "why": "wrong indicator 582: Yalpi ichki mahsulot o‘sish sur’ati (ishlab chiqarish usulida, yillik)",
    "engine": "gemini+rules",
-   "ms": 3752,
+   "ms": 2558,
    "interpreted_as": "O'zbekiston yalpi ichki mahsulotining 2024 yildagi o'sish sur'ati"
   },
   {
@@ -406,8 +406,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3339,
-   "interpreted_as": "Samarqand viloyati va Buxoro viloyatining 2024 yildagi yalpi hududiy mahsulotini solishtir"
+   "ms": 2025,
+   "interpreted_as": "Samarqand viloyati va Buxoro viloyati 2024 yildagi yalpi hududiy mahsulotini solishtir"
   },
   {
    "cat": "taqqoslash",
@@ -415,7 +415,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 5424,
+   "ms": 1799,
    "interpreted_as": "2023 yilda Andijon viloyati va Namangan viloyatida ishsizlik darajasini solishtir"
   },
   {
@@ -424,7 +424,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2717,
+   "ms": 1935,
    "interpreted_as": "Samarqand viloyati va Buxoro viloyati doimiy aholi sonini 2024 yilda solishtir"
   },
   {
@@ -433,7 +433,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 5968,
+   "ms": 1892,
    "interpreted_as": "Samarqand viloyati va Buxoro viloyatida 2023 yildagi ishsizlik darajasini solishtir"
   },
   {
@@ -441,9 +441,9 @@
    "q": "2020 dan 2024 gacha eksport hajmi qancha o'zgargan?",
    "ok": true,
    "why": "ok",
-   "engine": "gemini+rules",
-   "ms": 2179,
-   "interpreted_as": "2020-2024 yillarda O'zbekiston eksport hajmi dinamikasi qanday?"
+   "engine": "rules",
+   "ms": 3811,
+   "interpreted_as": null
   },
   {
    "cat": "dinamika",
@@ -451,7 +451,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2295,
+   "ms": 1684,
    "interpreted_as": "O'zbekistonda doimiy aholi soni 2015 va 2025 yillarda qanday o'zgargan?"
   },
   {
@@ -459,9 +459,9 @@
    "q": "Buxoro haqida ma'lumot ber",
    "ok": true,
    "why": "status=ok",
-   "engine": "gemini+rules",
-   "ms": 2697,
-   "interpreted_as": "Buxoro viloyati haqida ma'lumot ber"
+   "engine": "rules",
+   "ms": 5876,
+   "interpreted_as": null
   },
   {
    "cat": "noaniq",
@@ -469,7 +469,7 @@
    "ok": true,
    "why": "status=ok",
    "engine": "gemini+rules",
-   "ms": 4277,
+   "ms": 6335,
    "interpreted_as": "Samarqand viloyati haqida ma'lumot ber"
   },
   {
@@ -478,7 +478,7 @@
    "ok": true,
    "why": "status=ambiguous",
    "engine": "gemini+rules",
-   "ms": 2346,
+   "ms": 1549,
    "interpreted_as": "Toshkent doimiy aholi soni 2023 yilda qancha"
   },
   {
@@ -487,8 +487,8 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "gemini+rules",
-   "ms": 2753,
-   "interpreted_as": "2031 yilda ishsizlik darajasi qancha bo'ladi?"
+   "ms": 1622,
+   "interpreted_as": "2031 yilda O'zbekistonda ishsizlik darajasi prognozi qanday?"
   },
   {
    "cat": "rad",
@@ -496,8 +496,8 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "gemini+rules",
-   "ms": 4308,
-   "interpreted_as": "2030 yilda yalpi ichki mahsulot hajmi qancha bo'ladi?"
+   "ms": 1479,
+   "interpreted_as": "2030 yilda yalpi ichki mahsulot prognozi qancha?"
   },
   {
    "cat": "rad",
@@ -505,7 +505,7 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "gemini+rules",
-   "ms": 2930,
+   "ms": 1849,
    "interpreted_as": "Samarqand viloyatida 1950 yilda doimiy aholi soni qancha edi?"
   },
   {
@@ -514,7 +514,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 4598,
+   "ms": 3846,
    "interpreted_as": null
   },
   {
@@ -523,7 +523,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 4725,
+   "ms": 3952,
    "interpreted_as": null
   },
   {
@@ -532,7 +532,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 4419,
+   "ms": 3806,
    "interpreted_as": null
   },
   {
@@ -541,26 +541,71 @@
    "ok": true,
    "why": "status=no_data",
    "engine": "gemini+rules",
-   "ms": 2694,
-   "interpreted_as": "O'zbekistonda 2035 yilda ishsizlik darajasi qanday bo'ladi?"
+   "ms": 2103,
+   "interpreted_as": "O'zbekistonda 2035 yilda ishsizlik darajasi prognozi qanday?"
   },
   {
    "cat": "rad",
    "q": "Какой будет ВВП в 2040 году?",
    "ok": true,
-   "why": "status=no_match",
-   "engine": "rules",
-   "ms": 5265,
-   "interpreted_as": null
-  },
-  {
-   "cat": "rad",
-   "q": "2027 yilda aholi soni qancha bo'ladi?",
-   "ok": true,
    "why": "status=no_data",
    "engine": "gemini+rules",
-   "ms": 13914,
-   "interpreted_as": "2027 yilda O'zbekiston doimiy aholi soni prognozi qanday?"
+   "ms": 2013,
+   "interpreted_as": "O'zbekiston yalpi ichki mahsulotining 2040 yil uchun prognozi"
+  },
+  {
+   "cat": "prognoz",
+   "q": "2027 yilda aholi soni qancha bo'ladi?",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=246 2027",
+   "engine": "gemini+rules",
+   "ms": 12285,
+   "interpreted_as": "2027 yilda O'zbekiston doimiy aholi soni prognozi"
+  },
+  {
+   "cat": "prognoz",
+   "q": "Samarqand viloyatida 2028 yilda aholi soni",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=246 2028",
+   "engine": "gemini+rules",
+   "ms": 3347,
+   "interpreted_as": "Samarqand viloyatida 2028 yilda doimiy aholi soni prognozi"
+  },
+  {
+   "cat": "prognoz",
+   "q": "2026 yilda YaIM qancha bo'ladi?",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=1920 2026",
+   "engine": "gemini+rules",
+   "ms": 2113,
+   "interpreted_as": "2026 yilda yalpi ichki mahsulot prognozi qancha?"
+  },
+  {
+   "cat": "prognoz",
+   "q": "Buxoro viloyatida 2027 yilda tug'ilganlar soni prognozi",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=223 2027",
+   "engine": "gemini+rules",
+   "ms": 1694,
+   "interpreted_as": "Buxoro viloyatida 2027 yilda tug'ilganlar soni prognozi"
+  },
+  {
+   "cat": "prognoz",
+   "q": "Какой будет ВВП в 2027 году?",
+   "ok": true,
+   "why": "status=ok intent=forecast ind=1920 2027",
+   "engine": "gemini+rules",
+   "ms": 1805,
+   "interpreted_as": "2027 yilda yalpi ichki mahsulot prognozi qanday?"
+  },
+  {
+   "cat": "prognoz",
+   "q": "What will the population of Andijan region be in 2027?",
+   "ok": false,
+   "why": "status=no_match intent=None ind=None None",
+   "engine": "rules",
+   "ms": 4308,
+   "interpreted_as": null
   },
   {
    "cat": "rad",
@@ -568,7 +613,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 8971,
+   "ms": 4420,
    "interpreted_as": null
   },
   {
@@ -577,7 +622,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 3896,
+   "ms": 3691,
    "interpreted_as": null
   },
   {
@@ -586,7 +631,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 6928,
+   "ms": 4405,
    "interpreted_as": null
   },
   {
@@ -595,7 +640,7 @@
    "ok": true,
    "why": "status=no_match",
    "engine": "rules",
-   "ms": 6918,
+   "ms": 3688,
    "interpreted_as": null
   },
   {
@@ -604,7 +649,7 @@
    "ok": true,
    "why": "status=ambiguous",
    "engine": "gemini+rules",
-   "ms": 3155,
+   "ms": 2008,
    "interpreted_as": "Toshkent ishsizlik darajasi 2024 yilda"
   },
   {
@@ -613,17 +658,17 @@
    "ok": true,
    "why": "status=ambiguous",
    "engine": "gemini+rules",
-   "ms": 2464,
-   "interpreted_as": "Toshkentda 2024 yilda ishsizlik darajasi qancha?"
+   "ms": 1458,
+   "interpreted_as": "Toshkentda 2024 yilda ishsizlik darajasi qanday?"
   },
   {
    "cat": "yangi",
    "q": "Qoraqalpog'iston aholi soni 2024",
    "ok": true,
    "why": "ok",
-   "engine": "gemini+rules",
-   "ms": 7081,
-   "interpreted_as": "Qoraqalpog'iston Respublikasi doimiy aholi soni 2024 yilda"
+   "engine": "rules",
+   "ms": 19685,
+   "interpreted_as": null
   },
   {
    "cat": "yangi",
@@ -631,8 +676,8 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 2648,
-   "interpreted_as": "Jizzax viloyati 2023 yilda yalpi hududiy mahsulot hajmi qancha?"
+   "ms": 2454,
+   "interpreted_as": "Jizzax viloyati 2023 yilda yalpi hududiy mahsulot hajmi"
   },
   {
    "cat": "yangi",
@@ -640,7 +685,7 @@
    "ok": true,
    "why": "ok",
    "engine": "gemini+rules",
-   "ms": 3164,
+   "ms": 12815,
    "interpreted_as": "Surxondaryo viloyatida 2024 yilda tug'ilganlar soni"
   }
  ]

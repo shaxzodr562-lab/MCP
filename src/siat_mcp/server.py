@@ -25,7 +25,9 @@ Rules:
 3. Always mention the period, region and unit of every number, and name the source (siat.stat.uz).
 4. status != "ok": do not guess. no_data -> say the data is not available and quote available_periods.
    ambiguous -> ask the user to choose among the candidates. refused/not_found/no_match -> explain plainly.
-5. Do not provide forecasts or data outside the catalog; politely decline such questions.
+5. Never guess future values yourself. For a period after the last published one, call `forecast` and present
+   the result clearly as an ESTIMATE (not official data), with its interval and backtest error. If it is
+   refused, say so. Decline questions about data outside the catalog.
 6. Quarterly/monthly flow series are often cumulative within the year; tools handle this (see notes).
 """
 
@@ -107,6 +109,14 @@ def top_bottom(indicator_id: int, period: str, order: Literal["highest", "lowest
                basis: Basis = "reported") -> dict:
     """Regions with the highest or lowest value of an indicator in a period (Republic total excluded)."""
     return stats().top_bottom(indicator_id, period, order, limit, True, basis)
+
+
+@mcp.tool()
+def forecast(indicator_id: int, period: str | None = None, region: str | None = None) -> dict:
+    """ESTIMATE a value for a period after the last published one (annual, quarterly or monthly), computed in code
+    by a backtested time-series model. Returns point, uncertainty interval (covered ~70-80% of cases in backtests), model and past error. Not official data.
+    period omitted = next period. Refused when too far ahead, series too short, or past errors too large."""
+    return stats().forecast(indicator_id, period, region)
 
 
 def main() -> None:

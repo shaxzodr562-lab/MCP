@@ -1,5 +1,12 @@
 # Aniqlik baholash hisoboti
 
+> **Yangilanish (prognoz moduli qo'shilgandan keyin).** To'plam 76 savol bo'ldi (1 ta "rad etish" savoli va 5 ta yangi savol "prognoz" toifasiga o'tdi).
+> Gemini bilan **73/76 = 96,1 %**, Gemini'siz **56/76 = 73,7 %**. Prognoz toifasi: 5/6 va 4/6 (Gemini bilan qolgan bitta xato Gemini vaqtincha javob bermagani sababli).
+> Quyidagi jadvallar prognozgacha bo'lgan 71 savollik o'lchovga tegishli.
+>
+> **Prognoz aniqligi** (`eval/forecast_backtest.py`, oxirgi nuqtalar yashirilgan): median xato yillik 5,3 % (sodda taxmin 5,5 %), choraklik 4,0 % (7,4 %), oylik 4,4 % (10,4 %).
+> Oraliq qamrovi 71 / 80 / 82 %. Oraliq kengligi shu sinov asosida sozlangan va ikkinchi tasodifiy tanlamada (seed 101: 77 / 81 / 83 %) tekshirilgan. Qatorlarning taxminan 36–39 % ida tizim prognozni rad etadi.
+
 71 ta savol, `python eval/run_eval.py rules` va `python eval/run_eval.py gemini` bilan o'lchangan (natijalar `result_*.json` da).
 
 ## Natija

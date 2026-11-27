@@ -12,6 +12,7 @@ import re
 import sqlite3
 from pathlib import Path
 
+from . import forecast as fc
 from .config import settings
 from .normalize import REGION_ALIASES, normalize_text, parse_period_expr, region_key, token_match, tokens
 from .search import Catalog
@@ -276,6 +277,122 @@ class Stats:
                 "unit": ind["unit_uz"], "basis": basis, "points": pts, "notes": notes[:5],
                 "facts": [{"kind": "value", "value": p["value"], "period": p["period"], "member": m["name_uz"]} for p in pts],
                 "source": self._source(ind, [pts[0]["period"], pts[-1]["period"]])}
+
+    # ------------------------------------------------------------------ forecasting
+    def forecast(self, indicator_id: int, period: str | None = None, region=None) -> dict:
+        """Estimate a period AFTER the last published value. Never used for periods that exist or past gaps."""
+        ind, mem, err = self._prep(indicator_id, region)
+        if err:
+            return err
+        m = mem["member"]
+        base = {"indicator_id": ind["id"], "indicator": ind["name_uz"], "member": {"id": m["id"], "name": m["name_uz"]},
+                "unit": ind["unit_uz"], "source": self._source(ind)}
+
+        def refuse(reason: str, **extra) -> dict:
+            return {**base, "status": "refused", "reason": reason, **extra}
+
+        kind = {"Yillik": "year", "Choraklik": "quarter", "Oylik": "month"}.get(ind["periodicity"])
+        if not kind:
+            return refuse("not_a_time_series")
+        season = fc.SEASON[kind]
+        rows = [r for r in self._series(ind["id"], m["id"]) if r["kind"] == kind and r["value"] is not None]
+        # only the unbroken tail of the series can be modelled
+        start = len(rows) - 1
+        while start > 0 and _shift(rows[start - 1]["label"], steps=1) == rows[start]["label"]:
+            start -= 1
+        rows = rows[max(start, 0):]
+        if not rows:
+            return refuse("too_short", points=0)
+        last = rows[-1]["label"]
+
+        # target label
+        if period is None:
+            target = _shift(last, steps=1)
+        else:
+            target = parse_period_expr(str(period))["label"]
+            if target is None:
+                return refuse("bad_period")
+            if re.fullmatch(r"\d{4}", target) and kind != "year":  # whole year of a sub-annual series
+                if ind["is_cumulative"] != 1:
+                    return refuse("no_full_year")
+                target = f"{target}-Q4" if kind == "quarter" else f"{target}-M12"
+            shape = {"year": r"\d{4}", "quarter": r"\d{4}-Q[1-4]", "month": r"\d{4}-M\d{2}"}[kind]
+            if not re.fullmatch(shape, target):
+                return refuse("wrong_frequency", periodicity=ind["periodicity"])
+        if _sort_key(target) <= rows[-1]["sort_key"]:
+            return refuse("not_future", last_period=last)
+
+        horizon, label = 0, last
+        labels = []
+        while label != target and horizon <= fc.MAX_HORIZON[kind]:
+            label = _shift(label, steps=1)
+            labels.append(label)
+            horizon += 1
+        if horizon > fc.MAX_HORIZON[kind] or label != target:
+            return refuse("too_far", last_period=last, max_period=_shift(last, steps=fc.MAX_HORIZON[kind]))
+        if len(rows) < fc.MIN_POINTS[kind]:
+            return refuse("too_short", points=len(rows))
+
+        # cumulative sub-annual series: model single-period values, then accumulate again
+        cumulative = kind != "year" and ind["is_cumulative"] == 1
+        if kind != "year" and ind["is_cumulative"] is None:
+            return refuse("unknown_cumulative")
+        if cumulative:
+            pos = "month" if kind == "month" else "quarter"  # month rows carry a quarter too
+            first = next((i for i, r in enumerate(rows) if r[pos] == 1), None)
+            if first is None:
+                return refuse("too_short", points=0)
+            rows = rows[first:]
+            values = [r["value"] - (rows[i - 1]["value"] if r[pos] > 1 else 0) for i, r in enumerate(rows)]
+            if len(values) < fc.MIN_POINTS[kind]:
+                return refuse("too_short", points=len(values))
+        else:
+            values = [r["value"] for r in rows]
+
+        res = fc.forecast(values, horizon, season)
+        if not res["ok"]:
+            return refuse(res["reason"], error_pct=None if res.get("error") is None else round(res["error"] * 100, 1),
+                          points=len(values))
+
+        digits = 1 if abs(values[-1]) >= 100 else 2
+        path, run = [], rows[-1]["value"] if cumulative else 0.0
+        run_low, run_high = run, run
+        for lab, (p, lo, hi) in zip(labels, res["points"]):
+            if cumulative:
+                if lab.endswith(("-Q1", "-M01")):
+                    run = run_low = run_high = 0.0
+                run, run_low, run_high = run + p, run_low + lo, run_high + hi
+                p, lo, hi = run, run_low, run_high
+            path.append({"period": lab, "value": round(p, digits), "low": round(lo, digits), "high": round(hi, digits)})
+        point, prev = path[-1], rows[-1]
+        error_pct = round(res["error"] * 100, 1)
+        # compare with the same period one year earlier when cumulative, else with the last published value
+        ref_label = _shift(target, years=-1) if cumulative else last
+        ref = next((r["value"] for r in rows if r["label"] == ref_label), None)
+        if ref is None and cumulative:
+            ref = next((x["value"] for x in path if x["period"] == ref_label), None)
+        change_pct = round((point["value"] - ref) / abs(ref) * 100, 1) if ref else None
+        notes = ["Bu rasmiy ma'lumot emas, o'tgan davrlar asosida hisoblangan taxmin."]
+        if cumulative:
+            notes.append("Qiymat yil boshidan jamlanma ko'rinishida berilgan.")
+        if "so'm" in (ind["unit_uz"] or "").replace("‘", "'").replace("’", "'").lower():
+            notes.append("Pul ko'rsatkichi joriy narxlarda: prognoz narx o'sishini ham o'z ichiga oladi.")
+
+        facts = [{"kind": "forecast", "name": "prognoz", "value": point["value"], "period": target, "member": m["name_uz"]},
+                 {"kind": "forecast", "name": "quyi chegara", "value": point["low"]},
+                 {"kind": "forecast", "name": "yuqori chegara", "value": point["high"]},
+                 {"kind": "calc", "name": "backtest_xatosi_foiz", "value": error_pct},
+                 {"kind": "value", "value": prev["value"], "period": last, "member": m["name_uz"]}]
+        if change_pct is not None:
+            facts.append({"kind": "calc", "name": "ozgarish_foiz", "value": change_pct})
+        return {**base, "status": "ok", "forecast": True, "period": target, "value": point["value"],
+                "low": point["low"], "high": point["high"], "model": res["model"],
+                "model_name": res["model_uz"], "error_pct": error_pct, "backtest_points": res["backtest_points"],
+                "horizon": horizon, "last_actual": {"period": last, "value": prev["value"]},
+                "change_pct": change_pct, "change_vs": ref_label if change_pct is not None else None,
+                "history": [{"period": r["label"], "value": r["value"]} for r in rows][-max(12, 3 * season):],
+                "path": path, "cumulative": cumulative, "notes": notes, "facts": facts,
+                "source": self._source(ind, [rows[0]["label"], last])}
 
     def calc_change(self, indicator_id: int, period_from: str, period_to: str, region=None,
                     basis: str = "reported") -> dict:
